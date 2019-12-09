@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+  <h1 class="display-4">Película por ver</h1>
+  {% for movie in movies %}
+      <div class="row justify-content-center top-buffer">
+        <div class="col-md-10">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title"> {{movie.name}}</h3>
+              <h6 class="card-subtitle mb-2 text-muted">Fecha: - Hora: Tweet id: {{ movie.id }}</h6>
+              <p class="font-weight-light"> Prueba </p>
+              <a href="" class="btn btn-info btn-block" role="button">
+                Ver Respuestas
+              </a>
+            </div>
+            <div class="card-footer text-muted">
+              Replies: <span class="badge badge-light">99</span>
+            </div>
+          </div>
+        </div>
+      </div>
+  {% endfor %}
+  <p class="lead">
+    Esta es la descripcion de la pelicula
+  </p>
+  <h2>{{ movies.name }}</h2>
+  <hr class="my-4">
+  <div class="container-fluid">
+    <div class="row">
+    </div>
+  </div>
+</div>
+
+{% endblock%}
