@@ -28,15 +28,22 @@ def get_movies():
 
 
 def populate_movies_metadata():
+    print("Buscando información en línea")
     url_base = 'http://www.omdbapi.com/?apikey=' + os.getenv("API_KEY")
     movies = get_movies()
-    breakpoint()
     for movie in movies:
-        url = url_base + f'&t="{movie["name"]}"'
+        url = url_base + f'&t="{movie["title"]}"'
+        print("Buscando en", url)
         r = requests.get(url)
-    # TODO: Manejar información del API
-    return []
-
-
-populate_movies_metadata()
-
+        dataset = json.loads(r.text)
+        if 'Error' in dataset:
+            print("No se encontró", movie['title'])
+            with open('movies-not-found.data', 'a') as f:
+                f.write(f"{movie['title']}\n")
+        for d in dataset:
+            key = d.lower()
+            movie[key] = dataset[d]
+        with open('movies-populated.json', 'a') as f:
+            json.dump(movie, f)
+            f.write(',\n')
+    return True
