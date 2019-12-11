@@ -4,34 +4,57 @@
 
 <div class="jumbotron">
   <h1 class="display-4">Película por ver</h1>
-  {% for movie in movies %}
-      <div class="row justify-content-center top-buffer">
-        <div class="col-md-10">
-          <div class="card">
-            <div class="card-body">
-              <h3 class="card-title"> {{movie.name}}</h3>
-              <h6 class="card-subtitle mb-2 text-muted">Fecha: - Hora: Tweet id: {{ movie.id }}</h6>
-              <p class="font-weight-light"> Prueba </p>
-              <a href="" class="btn btn-info btn-block" role="button">
-                Ver Respuestas
-              </a>
-            </div>
-            <div class="card-footer text-muted">
-              Replies: <span class="badge badge-light">99</span>
-            </div>
+    <div class="row justify-content-center top-buffer">
+      <div class="col-md-10">
+        <div class="card">
+					{%if current.poster %}
+					<img class="card-img-top" src="{{current.poster}}" alt="Poster de {{current.title}}"/>
+						{% else %}
+							<img class="img-responsive" src="https://http.cat/404" alt="Poster no encontrado"/>
+						{% endif %}
+          <div class="card-body">
+            <h3 class="card-title"> {{current.title}}</h3>
+						<h6 class="card-subtitle mb-2 text-muted">Año: {{current.year}}</h6>
+						<p class="font-weight-light">{{current.plot}}</p>
+            <a href="" class="btn btn-info btn-block" role="button">
+              Marcar como vista
+            </a>
+          </div>
+          <div class="card-footer text-muted">
+            Replies: <span class="badge badge-light">99</span>
           </div>
         </div>
       </div>
-  {% endfor %}
-  <p class="lead">
-    Esta es la descripcion de la pelicula
-  </p>
-  <h2>{{ movies.name }}</h2>
-  <hr class="my-4">
-  <div class="container-fluid">
-    <div class="row">
     </div>
   </div>
-</div>
+  <hr class="my-4">
+  <div class="container-fluid">
+    {% for row in movies | slice(4) %}
+      <div class="row justify-content-center top-buffer">
+        {% for movie in row %}
+          <div class="col-md-3">
+            <div class="card">
+							{%if movie.poster %}
+								<img class="card-img-top" src="{{movie.poster}}" alt="Poster de {{movie.title}}"/>
+							{% else %}
+								<img class="card-img-top" src="https://http.cat/404" alt="Poster no encontrado"/>
+							{% endif %}
+              <div class="card-body">
+                <h3 class="card-title"> {{movie.title}}</h3>
+								<h6 class="card-subtitle mb-2 text-muted">Año: {{ movie.year }}</h6>
+								<p class="font-weight-light">{{ movie.plot }}</p>
+                <a href="" class="btn btn-primary btn-block" role="button">
+                  Marcar como vista
+                </a>
+              </div>
+              <div class="card-footer text-muted">
+                Replies: <span class="badge badge-light">99</span>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
 
 {% endblock%}
