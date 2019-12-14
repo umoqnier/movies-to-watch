@@ -3,3 +3,12 @@ body {
   font-weight: normal;
   font-style: normal;
 }
+
+.navbar {
+  font-size: 1.4rem;
+}
+
+.navbar-brand{
+  font-size: 2rem;
+  font-style: bold;
+}
