@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center top-buffer">
+      <h1 class="margin-sm-all">Tweets de para el periodo de {{periodo | capitalize}}</h1>
+  </div>
+  {% if tweets == [] %}
+  <div class="row top-buffer">
+    <div class="col-md-12">
+      <p class="text-center"><i class="far fa-frown fa-10x"></i></p>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <p class="text-center font-weight-light">No exiten tweets para este periodo</p>
+    </div>
+  </div>
+  {% else %}
+    {% for d in data%}
+      <div class="row justify-content-center top-buffer">
+        <div class="col-md-10">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">@{{d.tweet["username"]}}</h3>
+              <h6 class="card-subtitle mb-2 text-muted">Fecha: {{d.tweet.date}} - Hora: {{ d.tweet.time }} Tweet id: {{ d.tweet.id }}</h6>
+              <p class="font-weight-light">{{d.tweet.text}}</p>
+              <a href="{{ url_for('index', role=display_role, period=display_period, candidate=display_candidate, tweet_id=tweet.id) }}" class="btn btn-info btn-block" role="button">
+                Ver Respuestas
+              </a>
+            </div>
+            <div class="card-footer text-muted">
+                Replies: <span class="badge badge-light">{{len(d.replies)}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>
+{% endblock %}
