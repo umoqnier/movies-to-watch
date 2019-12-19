@@ -12,3 +12,15 @@ body {
   font-size: 2rem;
   font-style: bold;
 }
+
+.jumbotron{
+    margin-bottom: 0px;
+    background-repeat: repeat;
+    background-image: url('img/ocean.jpg');
+    color: white;
+    text-shadow: #525252 0.3em 0.3em 0.3em;
+}
+
+a.btn {
+  font-size: 1.7rem;
+}

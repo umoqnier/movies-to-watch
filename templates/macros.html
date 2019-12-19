@@ -27,15 +27,18 @@
 
       <div class="card-body">
           <h3 class="card-title"> {{movie.title}} <small>({{movie.year}})</small></h3>
-          <h6 class="card-subtitle mb-2">Directxr: {{ movie.director }}</h6>
+          <h5 class="card-subtitle mb-2 text-muted">🎥 {{ movie.director }}</h5>
+          <h6><i class="fa fa-language"></i> {{movie.language}}</h6>
           <p class="font-weight-light">{{ movie.plot }}</p>
           <a href="#" class="btn btn-light btn-block" role="button">
             No vista <i class="fa fa-eye-slash"></i>
           </a>
       </div>
 
-      <div class="card-footer text-muted">
-        Duración: <span class="badge badge-light">{{movie.runtime}}</span>
+      <div class="card-footer">
+        Duración: <span class="badge badge-danger">{{movie.runtime}}</span>
+        Votos en IMDB: <span class="badge badge-light">{{movie.imdbvotes}}</span>
+        Metascore: <span class="badge badge-warning">{{movie.metascore}}</span>
       </div>
     </div>
 
@@ -55,17 +58,20 @@
         </ul>
       </div>
 
-      <div class="card-body">
+      <div class="card-body d-flex flex-column">
         <h3 class="card-title"> {{movie.title}} <small class="text-muted">({{movie.year}})</small></h3>
-        <h6 class="card-subtitle mb-2 text-muted">Directxr: {{ movie.director }}</h6>
+        <h5 class="card-subtitle mb-2 text-muted">🎥 {{ movie.director }}</h5>
+        <h6><i class="fa fa-language"></i> {{movie.language}}</h6>
         <p class="font-weight-light">{{ movie.plot }}</p>
-        <a href="" class="btn btn-primary btn-block" role="button">
+        <a href="" class="btn btn-success btn-block mt-auto" role="button">
           Vista <i class="fa fa-eye"></i>
         </a>
       </div>
 
       <div class="card-footer text-muted">
-        Duración: <span class="badge badge-dark">{{movie.runtime}}</span>
+        Duración: <span class="badge badge-danger">{{movie.runtime}}</span>
+        Votos en IMDB: <span class="badge badge-dark">{{movie.imdbvotes}}</span>
+        Metascore: <span class="badge badge-warning">{{movie.metascore}}</span>
       </div>
     </div>
   {% endif %}
