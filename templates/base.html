@@ -38,11 +38,12 @@
     <a class="navbar-brand" href="url_for('index')">Peliculón 🎬</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
+    </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         {{ nav_link('index', 'Favoritas') }} {{ nav_link('index', 'Vistas') }}
       </ul>
+      <a class="btn btn-info mr-2" href="{{ url_for('randomizer', len_movies=1) }}"><i class="fa fa-random"></i></a>
     </div>
   </nav>
 

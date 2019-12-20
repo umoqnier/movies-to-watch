@@ -70,5 +70,23 @@ def unset_fav(_id):
     return redirect('/')
 
 
+@app.route('/random/<len_movies>')
+def randomizer(len_movies):
+    movies = get_movies()
+    for movie in movies:
+        try:
+            if movie['is_current']:
+                movie['is_current'] = False
+        except KeyError:
+            movie['is_current'] = False
+    current_movies = movie_selector(1)[0]
+    for movie in movies:
+        if movie['id'] == current_movies['id']:
+            movie['is_current'] = True
+            break
+    write_movies('movies.json', movies)
+    return redirect('/')
+
+
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
