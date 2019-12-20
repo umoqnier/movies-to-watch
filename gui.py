@@ -36,5 +36,27 @@ def unwatch_movie(_id):
     return redirect('/')
 
 
+@app.route('/fav/<_id>/')
+def set_fav(_id):
+    movies = get_movies()
+    for movie in movies:
+        if movie['id'] == _id:
+            movie['is_fav'] = True
+            break
+    write_movies('movies.json', movies)
+    return redirect('/')
+
+
+@app.route('/unfav/<_id>/')
+def unset_fav(_id):
+    movies = get_movies()
+    for movie in movies:
+        if movie['id'] == _id:
+            movie['is_fav'] = False
+            break
+    write_movies('movies.json', movies)
+    return redirect('/')
+
+
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")

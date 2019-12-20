@@ -21,16 +21,23 @@
           Votos en IMDB: <a class="badge badge-dark" href="">{{current.imdbvotes}}</a>
           Metascore: <a class="badge badge-warning" href="">{{current.metascore}}</a>
         </p>
+				<div class="btn-group-lg mb-3 ml-5" role="group" aria-label="Grupo">
+					<a href="{{ url_for('watch_movie', _id=current.id) }}" class="btn btn-light btn-lg" role="button">
+            Vista <i class="fa fa-eye"></i>
+					</a>
+					{% if current.is_fav %}
+						<a href="{{ url_for('unset_fav', _id=current.id) }}" class="btn btn-danger btn-lg" role="button">
+							Desfav <i class="fa fa-star-o"></i>
+						</a>
+					{% else %}
+						<a href="{{ url_for('set_fav', _id=current.id) }}" class="btn btn-warning btn-lg" role="button">
+							Favorita <i class="fa fa-star"></i>
+						</a>
+					{% endif %}
+				</div>
       </div>
       <div class="col-12 col-md-4">
-        <img class="rounded float-right mx-auto" src="{{current.poster}}" alt="">
-      </div>
-    </div>
-    <div class="row mt-3">
-      <div class="col-12 col-md-4 mx-auto">
-        <a href="{{ url_for('watch_movie', _id=current.id) }}" class="display-4 btn btn-light btn-lg btn-block" role="button">
-            Vista <i class="fa fa-eye"></i>
-        </a>
+        <img class="rounded mx-auto" src="{{current.poster}}" alt="">
       </div>
     </div>
   </div>

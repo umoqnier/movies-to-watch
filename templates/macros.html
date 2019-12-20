@@ -40,9 +40,15 @@
 								</a>
 							</div>
 							<div class="col-6">
-                <a class="btn btn-warning" href="" role="button">
+							{% if movie.is_fav %}
+								<a class="btn btn-danger" href="{{ url_for('unset_fav', _id=movie.id) }}" role="button">
+									Desfav <i class="fa fa-star-half-o"></i>
+								</a>
+							{% else %}
+								<a class="btn btn-warning" href="{{ url_for('set_fav', _id=movie.id) }}" role="button">
 									Favorita <i class="fa fa-star"></i>
 								</a>
+							{% endif %}
 							</div>
 						</div>
 					</div>
@@ -72,7 +78,7 @@
       </div>
 
       <div class="card-body d-flex flex-column">
-				<h3 class="card-title">  {% if movie.is_fav %} <i class="fa fa-start"></i> {% endif %} {{movie.title}} <small class="text-muted">({{movie.year}})</small></h3>
+				<h3 class="card-title"> {% if movie.is_fav %} <i class="fa fa-star"></i> {% endif %} {{movie.title}} <small class="text-muted">({{movie.year}})</small></h3>
         <h5 class="card-subtitle mb-2 text-muted">🎥 {{ movie.director }}</h5>
         <h6><i class="fa fa-language"></i> {{movie.language}}</h6>
         <p class="font-weight-light">{{ movie.plot }}</p>
@@ -84,9 +90,15 @@
 							</a>
 						</div>
 						<div class="col-6">
-							<a class="btn btn-warning" href="" role="button">
-								Favorita <i class="fa fa-star"></i>
-							</a>
+							{% if movie.is_fav %}
+								<a class="btn btn-danger" href="{{ url_for('unset_fav', _id=movie.id) }}" role="button">
+									Desfav <i class="fa fa-star-half-o"></i>
+								</a>
+							{% else %}
+								<a class="btn btn-warning" href="{{ url_for('set_fav', _id=movie.id) }}" role="button">
+									Favorita <i class="fa fa-star"></i>
+								</a>
+							{% endif %}
 						</div>
 					</div>
         </div>
