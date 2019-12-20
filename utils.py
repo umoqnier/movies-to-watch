@@ -27,6 +27,20 @@ def get_movies():
     return movies
 
 
+def write_movies(json_file, movies):
+    f = open(json_file, 'w')
+    f.write('[\n')
+    for movie in movies:
+        json.dump(movie, f)
+        if movie['id'] == movies[-1]['id']:
+            pass
+        else:
+            f.write(',\n')
+    f.write(']')
+    f.close()
+    return True
+
+
 def populate_movies_metadata():
     print("Buscando información en línea")
     url_base = 'http://www.omdbapi.com/?apikey=' + os.getenv("API_KEY")
@@ -43,7 +57,9 @@ def populate_movies_metadata():
         for d in dataset:
             key = d.lower()
             movie[key] = dataset[d]
-        with open('movies-populated.json', 'a') as f:
-            json.dump(movie, f)
-            f.write(',\n')
+        f = open('movies-populated.json', 'a')
+        json.dump(movie, f)
+        f.write(',\n')
+    f.write(']')
+    f.close()
     return True

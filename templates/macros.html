@@ -9,7 +9,9 @@
 
 
 {% macro card_render(movie) %}
+
   {% if movie.is_watch %}
+
     <div class="card text-white bg-dark h-100">
       {%if movie.poster %}
         <img class="card-img-top" src="{{movie.poster}}" alt="Poster de {{movie.title}}"/>
@@ -30,19 +32,30 @@
           <h5 class="card-subtitle mb-2 text-muted">🎥 {{ movie.director }}</h5>
           <h6><i class="fa fa-language"></i> {{movie.language}}</h6>
           <p class="font-weight-light">{{ movie.plot }}</p>
-          <a href="#" class="btn btn-light btn-block" role="button">
-            No vista <i class="fa fa-eye-slash"></i>
-          </a>
+					<div class="continer mt-auto">
+						<div class="row">
+							<div class="col-6">
+								<a href="{{ url_for('unwatch_movie', _id=movie.id) }}" class="btn btn-light" role="button">
+									No vista <i class="fa fa-eye-slash"></i>
+								</a>
+							</div>
+							<div class="col-6">
+                <a class="btn btn-warning" href="" role="button">
+									Favorita <i class="fa fa-star"></i>
+								</a>
+							</div>
+						</div>
+					</div>
       </div>
-
       <div class="card-footer">
-        Duración: <span class="badge badge-danger">{{movie.runtime}}</span>
-        Votos en IMDB: <span class="badge badge-light">{{movie.imdbvotes}}</span>
-        Metascore: <span class="badge badge-warning">{{movie.metascore}}</span>
+        <p>Duración: <span class="badge badge-danger">{{movie.runtime}}</span></p>
+        <p>Votos en IMDB: <span class="badge badge-light">{{movie.imdbvotes}}</span></p>
+        <p>Metascore: <span class="badge badge-warning">{{movie.metascore}}</span></p>
       </div>
     </div>
 
   {% else %}
+
     <div class="card h-100">
       {%if movie.poster %}
         <img class="card-img-top" src="{{movie.poster}}" alt="Poster de {{movie.title}}"/>
@@ -59,21 +72,33 @@
       </div>
 
       <div class="card-body d-flex flex-column">
-        <h3 class="card-title"> {{movie.title}} <small class="text-muted">({{movie.year}})</small></h3>
+				<h3 class="card-title">  {% if movie.is_fav %} <i class="fa fa-start"></i> {% endif %} {{movie.title}} <small class="text-muted">({{movie.year}})</small></h3>
         <h5 class="card-subtitle mb-2 text-muted">🎥 {{ movie.director }}</h5>
         <h6><i class="fa fa-language"></i> {{movie.language}}</h6>
         <p class="font-weight-light">{{ movie.plot }}</p>
-        <a href="" class="btn btn-success btn-block mt-auto" role="button">
-          Vista <i class="fa fa-eye"></i>
-        </a>
+        <div class="container mt-auto">
+					<div class="row">
+						<div class="col-6">
+							<a href="{{ url_for('watch_movie', _id=movie.id) }}" class="btn btn-success" role="button">
+								Vista <i class="fa fa-eye"></i>
+							</a>
+						</div>
+						<div class="col-6">
+							<a class="btn btn-warning" href="" role="button">
+								Favorita <i class="fa fa-star"></i>
+							</a>
+						</div>
+					</div>
+        </div>
       </div>
 
       <div class="card-footer text-muted">
-        Duración: <span class="badge badge-danger">{{movie.runtime}}</span>
-        Votos en IMDB: <span class="badge badge-dark">{{movie.imdbvotes}}</span>
-        Metascore: <span class="badge badge-warning">{{movie.metascore}}</span>
+        <p>Duración: <span class="badge badge-danger">{{movie.runtime}}</span></p>
+        <p>Votos en IMDB: <span class="badge badge-dark">{{movie.imdbvotes}}</span></p>
+        <p>Metascore: <span class="badge badge-warning">{{movie.metascore}}</span></p>
       </div>
     </div>
+
   {% endif %}
 
 {% endmacro %}
