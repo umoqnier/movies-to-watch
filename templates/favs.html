@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid">
+  <h1>Lista de peliculas favoritas <i class="fa fa-star"></i></h1>
+  <h2>Total: {{ movies |length }}</h2>
+  {% for row in movies|slice(rows) %}
+    <div class="row justify-content-center">
+      {% for movie in row %}
+        <div class="col-md-3 mt-3">
+          {{ card_render(movie) }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

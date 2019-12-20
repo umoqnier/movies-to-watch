@@ -45,6 +45,7 @@
   <hr class="my-4">
   <div class="container-fluid">
     <h1>Lista de peliculas <i class="fa fa-list-alt"></i></h1>
+    <h2>Total de peliculas: {{ movies |length }}</h2>
     {% for row in movies|slice(rows) %}
       <div class="row justify-content-center">
         {% for movie in row %}

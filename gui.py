@@ -88,5 +88,29 @@ def randomizer(len_movies):
     return redirect('/')
 
 
+@app.route('/favs')
+def favorites():
+    favorites = []
+    for f in get_movies():
+        try:
+            if f['is_fav']:
+                favorites.append(f)
+        except KeyError:
+            continue
+    total_favs = len(favorites)
+    return render_template("favs.html", movies=favorites,
+                           rows=int(total_favs/4))
+
+
+@app.route('/viewed')
+def viewed():
+    return []
+
+
+@app.route('/about')
+def about():
+    return []
+
+
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
