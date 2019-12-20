@@ -1,3 +1,4 @@
+import math
 from flask import Flask, render_template, redirect
 from utils import (movie_selector, get_movies, get_unseen_movies,
                    write_movies, get_current_movies)
@@ -98,8 +99,12 @@ def favorites():
         except KeyError:
             continue
     total_favs = len(favorites)
+    if total_favs == 0:
+        rows = 1
+    else:
+        rows = math.ceil(total_favs/4)
     return render_template("favs.html", movies=favorites,
-                           rows=int(total_favs/4))
+                           rows=rows)
 
 
 @app.route('/viewed')

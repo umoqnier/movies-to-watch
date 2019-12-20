@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container-fluid">
+
+{% if movies %}
+ <div class="container-fluid">
   <h1>Lista de peliculas favoritas <i class="fa fa-star"></i></h1>
   <h2>Total: {{ movies |length }}</h2>
   {% for row in movies|slice(rows) %}
@@ -13,4 +15,11 @@
     </div>
   {% endfor %}
 </div>
+{% else %}
+<div class="container-fluid mt-3">
+  <h1>No hay peliculas favoritas</h1>
+  <img class="img-fluid mx-auto d-block" src="https://http.cat/404" alt="Imagen de gato que no encuentra nada"/>
+</div>
+{% endif %}
+
 {% endblock %}
