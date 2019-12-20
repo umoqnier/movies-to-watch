@@ -10,6 +10,8 @@ load_dotenv(dotenv_path='.env')
 def movie_selector(movies_to_watch=1):
     movies = get_unseen_movies()
     movies_to_watch = random.choices(movies, k=movies_to_watch)
+    for current in movies_to_watch:
+        current['is_current'] = True
     return movies_to_watch
 
 
@@ -25,6 +27,18 @@ def get_movies():
         raw_movies = f.read()
     movies = json.loads(raw_movies)
     return movies
+
+
+def get_current_movies():
+    data = []
+    movies = get_movies()
+    for current in movies:
+        try:
+            if current['is_current']:
+                data.append(current)
+        except KeyError:
+            current['is_current'] = False
+    return data
 
 
 def write_movies(json_file, movies):
